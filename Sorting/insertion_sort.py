@@ -12,8 +12,8 @@ clock = pygame.time.Clock()
 BLACK = (20, 20, 20)
 WHITE = (220, 220, 220)
 BLUE = (0, 249, 182)
-SKY = (18, 72, 158)
-GREEN = (0, 255, 0)
+RED = (255, 0, 0)
+GREEN = (0, 220, 0)
 
 x_off = 120
 y_off = 150
@@ -23,16 +23,16 @@ font2 = pygame.font.SysFont('Cursive', 72)
 
 def insertionSort(arr):
 	states = []
-	for i in range(length):
-		index = 0
-		while index < length-1:
-			if arr[index] > arr[index+1]:
-				temp = arr[index]
-				arr[index] = arr[index+1]
-				arr[index+1] = temp
+	for i in range(1, length):
+		j = i
+		while j > 0 and arr[j-1] > arr[j]:
+			temp = arr[j-1]
+			arr[j-1] = arr[j]
+			arr[j] = temp
 
-			states.append(([j for j in arr], index, i))
-			index += 1
+			j -= 1
+
+			states.append(([k for k in arr], i, j))
 
 	return states
 
@@ -65,16 +65,16 @@ while running:
 				running = False
 
 	for i in range(length):
-		if i == states[index][1]:
-			pygame.draw.rect(win, SKY, (x_off + 40*i, y_off, 40, 40))
-		if i == states[index][1] + 1:
+		if i <= states[index][1]+1:
 			pygame.draw.rect(win, GREEN, (x_off + 40*i, y_off, 40, 40))
+		if i == states[index][2]:
+			pygame.draw.rect(win, RED, (x_off + 40*i, y_off, 40, 40))
 
 		pygame.draw.rect(win, WHITE, (x_off + 40*i, y_off, 40, 40), 1)
 		text = font.render(f'{states[index][0][i]}', True, WHITE)
 		win.blit(text, (x_off + 40 * i + 15, y_off + 15))
 
-		pass_text = font.render(f'pass : {states[index][2]+1}', True, WHITE)
+		pass_text = font.render(f'pass : {states[index][1]}', True, WHITE)
 		win.blit(pass_text, (WIDTH - pass_text.get_width() - 120, 200))
 
 
