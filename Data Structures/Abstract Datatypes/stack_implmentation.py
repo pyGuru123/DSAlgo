@@ -6,6 +6,7 @@
 # Dependencies : pyperclip, keyboard
 # Data Structure : Stack
 
+import time
 import keyboard
 import pyperclip
 
@@ -66,7 +67,13 @@ if __name__ == "__main__":
 		if keyboard.is_pressed('ctrl + q'):
 			break
 
-		if keyboard.is_pressed('ctrl + b'):
-			stack.push('hello')
+		if keyboard.is_pressed('ctrl + c'):
+			copy = pyperclip.paste()
+			print(stack.push(copy))
 			print(stack)
-			print(len(stack))
+
+		if keyboard.is_pressed('ctrl + v'):
+			pyperclip.copy(stack.pop())
+			print(stack)
+
+		time.sleep(0.2)
