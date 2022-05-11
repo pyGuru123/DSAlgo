@@ -15,14 +15,10 @@ class Stack(object):
 
 	def __str__(self):
 		if not self.isEmpty():
-			stack = self.stack[::-1]
-			string = str(stack[0]) + " <- top"
-			for item in stack[1:]:
-				string += "\n" + str(item)
+			elements =  ''.join(self.stack)
+			return f'{elements:<7}'
 
-			return string
-
-		return "Empty Stack"
+		return "Empty  "
 
 	def size(self):
 		return self.top + 1
@@ -74,6 +70,7 @@ def infixToPostfix(infix, stack):
 				if char == ')':
 					while stack.peek() != '(':
 						postfix += stack.pop()
+						print(stack, postfix)
 					stack.pop()
 				else:
 					if precedence[char] > precedence[stack.peek()]:
@@ -82,8 +79,11 @@ def infixToPostfix(infix, stack):
 						postfix += stack.pop()
 						stack.push(char)
 
+		print(stack, postfix)
+
 	while not stack.isEmpty():
 		postfix += stack.pop()
+		print(stack, postfix)
 
 	return postfix
 
@@ -92,5 +92,8 @@ if __name__ == '__main__':
 
 	infix1 = 'A+B*C'
 	infix2 = 'A+(B*C-(D/E^F)*G)*H'
-	print(infixToPostfix(infix1, stack))
-	print(infixToPostfix(infix2, stack))
+	infix3 = 'A+(B*C-(D/E-F)*G)*H'
+	infix4 = 'A+B/C+D*(E-F)^G'
+	
+	print(infix4, '\n')
+	print(infixToPostfix(infix4, stack))
