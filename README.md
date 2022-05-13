@@ -1,2 +1,3 @@
 # TheAlgoSims
-Algorithmic simulations in python and pygame
+Data Structures and Algorithmic simulations in python.
+
