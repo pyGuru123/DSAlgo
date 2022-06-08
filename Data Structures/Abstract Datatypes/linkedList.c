@@ -1,4 +1,5 @@
 // Online C compiler to run C program online
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -82,14 +83,16 @@ void popBeg() {
 }
 
 void popEnd() {
-    struct Node *ptr;
+    struct Node *ptr, *temp;
     if (head != NULL) {
         ptr = head;
-        while (ptr->next != NULL) {
+        while (ptr->next->next != NULL) {
             ptr = ptr->next;
         }
-        printf("Element Deleted : %d", ptr->data);
-        free(ptr);
+        temp = ptr->next;
+        ptr->next = NULL;
+        printf("Element Deleted : %d", temp->data);
+        free(temp);
     }
 }
 
