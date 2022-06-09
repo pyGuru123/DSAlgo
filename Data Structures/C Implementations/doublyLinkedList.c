@@ -17,8 +17,7 @@ void createList(int d) {
     if (start == NULL) {
         start = temp;
     }
-}3
-
+}
 
 void insertBeg(int d){
     struct Node *temp;
@@ -35,6 +34,52 @@ void insertBeg(int d){
         start = temp;
     }
 }
+
+void insertEnd(int d) {
+    struct Node *temp, *ptr;
+    temp = (struct Node *)malloc(sizeof(struct Node));
+    temp->data = d;
+    temp->next = NULL;
+    temp->prev = NULL;
+    ptr = start;
+    while(ptr->next != NULL) {
+        ptr = ptr->next;
+    }
+    ptr->next = temp;
+    temp->prev = ptr;
+}
+
+void popBeg() {
+    struct Node *temp;
+    temp = start;
+    start = start->next;
+    start->prev = NULL;
+    printf("element deleted %d", temp->data);
+    free(temp);
+}
+
+void popEnd(){
+    struct Node *temp, *ptr;
+    ptr = start;
+    while (ptr->next->next != NULL) {
+        ptr = ptr->next;
+    }
+    temp = ptr->next;
+    ptr->next = NULL;
+    printf("element deleted %d", temp->data);
+    free(temp);
+}
+
+void listLength(){
+    struct Node *ptr;
+    int len =0;
+    ptr = start;
+    while(ptr != NULL){
+        len += 1;
+        ptr = ptr->next;
+    }
+    printf("Number of elements : %d", len);
+} 
 
 void displayList(){
     struct Node *ptr;
@@ -70,23 +115,23 @@ int main() {
                     displayList();
                     break;
             case 3: 
-                    // printf("\nInsert Element : ");
-                    // scanf("%d", &data);
-                    // insertBeg(data);
+                    printf("\nInsert Element : ");
+                    scanf("%d", &data);
+                    insertBeg(data);
                     break;
             case 4: 
-                    // printf("\nInsert Element : ");
-                    // scanf("%d", &data);
-                    // insertEnd(data);
+                    printf("\nInsert Element : ");
+                    scanf("%d", &data);
+                    insertEnd(data);
                     break;
             case 5:
-                    // listLength();
+                    listLength();
                     break;
             case 6:
-                    // popBeg();
+                    popBeg();
                     break;
             case 7: 
-                    // popEnd();
+                    popEnd();
                     break;
             case 9: break;
             default: break;
