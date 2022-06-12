@@ -22,12 +22,27 @@ WHITE = (255, 255, 255)
 BLUE = (30, 144,255)
 RED = (255, 0, 0)
 GREEN = (0, 255, 0)
-BLACK = (0, 0, 20)
+BLACK = (0, 0, 0)
+
+padding = 40
+
 
 heights = list(range(10, 370, 5))
 random.shuffle(heights)
+width = (WIDTH - padding) // len(heights)
 
 sorting = False
+
+def draw(arr, i, j):
+	for index, height in enumerate(heights):
+			color = WHITE
+			if index == i:
+				color = BLUE
+			elif index == j:
+				color = RED
+			elif index < i:
+				color = GREEN
+			pygame.draw.rect(win, color, ((20 + 10*index), HEIGHT - 20 - height, 5, height) )
 
 def selectionSort(arr):
 	for i in range(len(arr)):
@@ -37,16 +52,8 @@ def selectionSort(arr):
 				min_idx = j
     
 		arr[i], arr[min_idx] = arr[min_idx], arr[i]
+		draw(arr, i, min_idx)
 		
-		for index, height in enumerate(heights):
-			color = WHITE
-			if index == i:
-				color = BLUE
-			elif index == min_idx:
-				color = RED
-			elif index < i:
-				color = GREEN
-			pygame.draw.rect(win, color, ((20 + 10*index), HEIGHT - 20 - height, 5, height) )
 		yield True
 
 	return arr
@@ -80,7 +87,7 @@ while running:
 
 	else:
 		for index, height in enumerate(heights):
-			pygame.draw.rect(win, WHITE, ((20 + 10*index), HEIGHT - 20 - height, 5, height) )
+			pygame.draw.rect(win, WHITE, ((20 + width*index), HEIGHT - 20 - height, width, height) )
 
 	clock.tick(FPS)
 	pygame.display.update()
