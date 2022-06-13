@@ -71,6 +71,17 @@ def selectionSort(arr):
 		yield True
 
 	return arr
+	
+def bubbleSort(arr):
+	for i in range(len(arr)):
+		for j in range(len(arr)):
+			if arr[i] < arr[j]:
+				arr[i], arr[j] = arr[j], arr[i]
+				
+		draw(arr, i, j)
+		yield True
+				
+	return arr
 
 # GAME ************************************************************************
 
@@ -87,6 +98,10 @@ while running:
 
 			if event.key == pygame.K_s and not sorting:
 				key = selectionSort(heights)
+				sorting = True
+				
+			if event.key == pygame.K_b and not sorting:
+				key = bubbleSort(heights)
 				sorting = True
 
 			if event.key == pygame.K_r and not sorting:
