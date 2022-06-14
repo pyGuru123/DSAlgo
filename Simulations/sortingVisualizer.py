@@ -14,7 +14,7 @@ else:
 	win = pygame.display.set_mode(SCREEN, pygame.NOFRAME | pygame.SCALED | pygame.FULLSCREEN)
 
 clock = pygame.time.Clock()
-FPS = 15
+FPS = 60
 
 # COLORS **********************************************************************
 
@@ -73,10 +73,10 @@ def selectionSort(arr):
 	return arr
 	
 def bubbleSort(arr):
-	for i in range(len(arr)):
-		for j in range(len(arr)):
-			if arr[i] < arr[j]:
-				arr[i], arr[j] = arr[j], arr[i]
+	for i in range(len(arr) - 1):
+		for j in range(len(arr) - 1 ):
+			if arr[j] > arr[j+1]:
+				arr[j], arr[j+1] = arr[j+1], arr[j]
 				
 		draw(arr, i, j)
 		yield True
