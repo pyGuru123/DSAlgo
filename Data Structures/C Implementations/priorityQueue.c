@@ -1,4 +1,4 @@
-l//  Priority Queue as array structure
+//  Priority Queue as array structure
 
 #include <stdio.h>
 
@@ -56,8 +56,8 @@ int main(){
                     }
                     break;
             case 3 : if (!isEmpty()) {
-                        element, priority = getHighestPriority();
-                        printf("data : %d, priority : %d\n", element, priority);
+                        priority = getHighestPriority();
+                        printf("priority : %d\n", priority);
                     }
                     else {
                         printf("Queue Empty");
@@ -112,22 +112,22 @@ int queueSize() {
 }
 
 int getHighestPriority() {
-    int p = -1, d=-1;
+    int p = -1;
     for (int i=0; i<=rear; i++) {
         if (queue[i].priority > p) {
             p = queue[i].priority;
-            d = queue[i].data;
         }
     }
-    return d, p;
+    return p;
 }
 
 int deleteHighestPriority() {
     int p=-1, d=-1, i, j;
-    d, p = getHighestPriority();
+    p = getHighestPriority();
     for (i=0; i<=rear; i++) {
         if (queue[i].priority == p) {
             d = queue[i].data;
+            break;
         }
     }
     for (j=i; j<=rear; j++) {
