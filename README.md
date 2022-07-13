@@ -1,3 +1,3 @@
-# TheAlgoSims
-Data Structures and Algorithmic simulations in python.
+# DSAlgo
 
+Data Structure and Algorithm implementation in Python and 
